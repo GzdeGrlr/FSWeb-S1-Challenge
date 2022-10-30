@@ -214,7 +214,7 @@ Aşağıdakileri yapmak için fenomenSil'i kullanın:
 
 ÖRNEK: fenomenSil işlevi fenomenler dizisi ve 0 indeks sayısı ile çağrılırsa, veri kümemizden 'Instagram' kaldırılmış olarak döndürür. */
 function fenomenSil(fenomenler, index) {
-  let newArr2 = fenomenler;
+  let newArr2 = fenomenler.slice();
   newArr2.splice(index,1);
   return newArr2;
 
@@ -314,12 +314,28 @@ Not: Gönderi sayısı belli olmayan (NA) hesaba katmayın.
 Örnek: platformaGoreCokGonderiYapanFenomen(fenomenler, 'TikTok') çağrıldığında "charli damelio" dönmelidir
 */
 
+
 function platformaGoreCokGonderiYapanFenomen(fenomenler,platform){
- 
+ let newArr3 = fenomenler.slice();
+ let newArr4 = [];
+
+ for (let i = 0; i < newArr3.length; i++) {
+    if (newArr3[i].platform == platform) {
+      newArr4.push(newArr3[i]);    
+    }    
+}
+
+let result = newArr4.sort(function(a, b){return b.posts - a.posts});
+return result[0].profile;
+
+    // let result = Math.max(...newArr4.map(o => o.posts))
+    // return result[0].profile;
  
 }
 
-console.log(fenomenler)
+
+
+console.log(platformaGoreCokGonderiYapanFenomen(fenomenler,'Twitter'))
 
 
 /* ***** GÖREVLERİN SONU ***** */
